@@ -1,7 +1,11 @@
-# GPT-Summarizer
-A Chrome extension that utilizes ChatGPT to provide a summarized version of web articles, as well as useful options to facilitate content understanding.
+# Solar-Summarizer
+A Chrome extension that utilizes SolarLLM to provide a summarized version of web articles, as well as useful options to facilitate content understanding.
 # Screenshot
-![image](https://user-images.githubusercontent.com/66046302/219940428-c8316532-20c6-4370-947a-cf1cfcc03b39.png)
+<img width="1046" alt="image" src="https://github.com/hunkimForks/Solar-Summarizer/assets/901975/ad478970-6637-4b91-bd70-45c26d21d938">
+
+# Setting
+<img width="394" alt="image" src="https://github.com/hunkimForks/Solar-Summarizer/assets/901975/153e0a16-adbc-4ba4-aed1-88545184c0fe">
+
 # Features
 - Easy and auto authorization with ChatGPT browser tab (no api-key required).
 - Overview of page content without any text selection.
