@@ -17,7 +17,7 @@ Don't read all. Just press SS!
 - Caching summary text of the url for 10 minutes.
 
 # Installing from Chrome Store
-Install the extension from [Chrome Store](TBA).
+Install the extension from [Chrome Store TBA](TBA).
 
 # Installing from Source Code
 1. Download or clone this repository.
