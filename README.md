@@ -29,3 +29,6 @@ Install the extension from [Chrome Store](TBA).
 
 # Contributions
 We welcome all comments and pull requests.
+
+# Acknowledgment
+forked from [beshavardmh/GPT-Summarizer](https://github.com/beshavardmh/GPT-Summarizer)
