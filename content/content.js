@@ -18,21 +18,26 @@ port.onMessage.addListener(async (state) => {
     // Handle different message types and executes code based on the message received
     switch (state.type) {
         // If the message type is "UNAUTHORIZED", this code shows an authorize state and sends a message to open an authorize tab
-        case 'UNAUTHORIZED':
-            showAuthorizeState(() => {
-                port.postMessage({ type: 'OPEN_AUTHORIZE_TAB' });
-            });
-            break;
+        //case 'UNAUTHORIZED':
+        //    showAuthorizeState(() => {
+        //        port.postMessage({ type: 'OPEN_AUTHORIZE_TAB' });
+        //    });
+        //    break;
         // If the message type is "AUTHORIZED", this code shows a loading state and sends a message to generate an overview with page content
-        case 'AUTHORIZED':
+        case 'UNAUTHORIZED': // 'AUTHORIZED':
             showLoadingState();
             port.postMessage({ type: 'GENERATE_OVERVIEW', props: { content: getPageContent() } });
             break;
         // If the message type is "OVERVIEW", this code shows an overview state with the provided time and word count, and sends a message to generate a summary
         case 'OVERVIEW':
-            showOverviewState(state.props.time, state.props.words, (summaryMode) => {
-                port.postMessage({ type: 'GENERATE_SUMMARY', props: { summaryMode: summaryMode } });
-                showLoadingState();
+            //showOverviewState( state.props.time, state.props.words, state.props.content, (summaryMode) => {
+            //    port.postMessage({ type: 'GENERATE_SUMMARY', props: { summaryMode: summaryMode } });
+            //    showLoadingState();
+            //});
+            showOverviewState( state.props.time, state.props.words, state.props.content, (element) => {                
+                getSolarSummary(state.props.content, element);
+                //port.postMessage({ type: 'GENERATE_SUMMARY', props: {} });
+                //showLoadingState();
             });
             break;
         // If the message type is "ERROR", this code shows an error state with the provided error message

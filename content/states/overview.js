@@ -1,13 +1,45 @@
 // Display overview state
-const showOverviewState = (time, words, callback) => {
+const showOverviewState = async (time, words, content, callback) => {
     // Return if main popup not exists
     if (!document.querySelector('.gpts .gpts-content')) return;
 
+    const api_key_promise = await get_key_from_localstorage();
+    const api_key = api_key_promise.solar_api_key;
+    const prompt_promise = await get_prompt_from_localstorage();
+    const prompt = prompt_promise.solar_prompt?prompt_promise.solar_prompt:default_prompt;
+
+
     // Create overview state DOM and put it inside the popup content
     const dom = `<div class="gpts-overview">
+                    <div id="gpts-setting-icon" class="gpts-setting-btn">
+                    ⚙️ Setting
+                    </div>
+                    <div id="gpts-setting" class="gpts-authorize">
+                        <p>
+                            <p>Solar API Key: </p>
+                            <input id="solar-api-key-value" type="password" value="${api_key}" size=50/>
+                            <p>
+                            Get your API key from <a href="https://console.upstage.ai/" class="gpts-auth-link" target="_blank">Upstage Concole</a>.
+                            </p>
+                        </p>
+                        <p>
+                            <p>Prompt: </p>
+                            <textarea id="solar-prompt" rows="4" cols="50">${prompt}</textarea>
+                        </p>
+                        <div id="seting-msg" class="gpts-setting-msg">
+                        </div>
+                        <div class="gpts-generate-btn">
+                            Store
+                        </div>
+                       
+                        <p/>
+                    </div>
+
                     <p>
-                        The content of this page is: <b>${time} min (about ${words} words)</b>.
+                        The content of this page is: <b>${time} min read (about ${words} words)</b>.
                     </p>
+                   
+                        <!--
                     <div class="gpts-summary-mode">
                         <p>Summary Mode: </p>
                         <select id="gpts-summary-mode">
@@ -31,14 +63,50 @@ const showOverviewState = (time, words, callback) => {
                                 stroke-linejoin="round" />
                         </svg>
                     </div>
+                    -->
+                    <div class="gpts-summary-text" id="solar-summary">
+                    </div>
                 </div>`;
+
+   
+
     document.querySelector('.gpts .gpts-content').innerHTML = dom;
+
+    if (get_key_from_localstorage()) {
+        document.getElementById('gpts-setting').style.display = 'none';
+    }
+    const solarSummaryElement = document.getElementById('solar-summary');
+    callback(solarSummaryElement);
+
+    if (solarSummaryElement.innerHTML.startsWith('Error:')) {
+        console.log('HMM Error:', solarSummaryElement.innerHTML);
+    }
 
     // Add an event listener for click on summarize button that calls a callback function
     dynamicDomEvent('click', '.gpts-generate-btn', () => {
-        const summaryMode = document.getElementById('gpts-summary-mode').value;
+        msg_emelement = document.getElementById('seting-msg');
+        try {
+            const api_key = document.getElementById('solar-api-key-value').value;
+            const lang = document.getElementById('solar-prompt').value;
+            set_key_to_localstorage(api_key);
+            set_prompt_to_localstorage(lang);
+            msg_emelement.innerHTML = "Setting saved!";
+        } catch (e) {
+            console.log('Error:', e);
+            msg_emelement.innerHTML = "Error: " + e;
+        }
+    
+        callback(solarSummaryElement);
 
-        callback(summaryMode);
+    });
+
+     // Add an event listener for click on summarize button that calls a callback function
+     dynamicDomEvent('click', '#gpts-setting-icon', () => {
+        if (document.getElementById('gpts-setting').style.display === 'none') {
+            document.getElementById('gpts-setting').style.display = 'block';
+        } else {
+            document.getElementById('gpts-setting').style.display = 'none';
+        }
     });
 }
 

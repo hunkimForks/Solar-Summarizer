@@ -52,6 +52,9 @@ const extIconOnClick = async (tab) => {
             'content/states/loading.js',
             'content/states/overview.js',
             'content/states/summary.js',
+            'content/states/solar.js',
+            'content/states/sse.js',
+            'content/states/store.js',
             'content/content.js',
         ]
     });
@@ -98,9 +101,9 @@ chrome.runtime.onConnect.addListener((port) => {
                     break;
                 case 'GENERATE_OVERVIEW':
                     // Generate an overview of the content
-                    const { overviewTime, overviewWords } = await generateOverview(event.props.content);
+                    const { overviewTime, overviewWords, contentText } = await generateOverview(event.props.content);
                     if (app.states.error) app.contentPort.postMessage({ type: 'ERROR', props: { error: app.error } });
-                    if (app.states.overview) app.contentPort.postMessage({ type: 'OVERVIEW', props: { time: overviewTime, words: overviewWords } });
+                    if (app.states.overview) app.contentPort.postMessage({ type: 'OVERVIEW', props: { time: overviewTime, words: overviewWords, content: contentText } });
                     break;
                 case 'GENERATE_SUMMARY':
                     // Generate a summary of the content

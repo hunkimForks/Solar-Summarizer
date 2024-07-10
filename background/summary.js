@@ -24,17 +24,19 @@ export const generateSummary = async (summaryMode) => {
         ? `Instructions: Summarize this content in brief in ${app.pageContentLang} language with correct grammer. Your response should be provide an overview of the information presented in the content and should not include personal comments.\n\nContent: ${app.pageContentText}`
         : `Summary Mode: Bullet-Points\n\nInstructions: Summarize the content in bullet-point format in ${app.pageContentLang} language. Provide a concise overview of the information without personal comments.\n\nContent: ${app.pageContentText}`;
 
+    console.log("prompt: ", prompt)
     // Get access token for authorization
-    const accessToken = await getAccessToken();
+    //const accessToken = await getAccessToken();
 
     // If access token is available, call function to get summary
-    if (accessToken) {
-        await getConversation(prompt, accessToken);
-        return;
-    }
+    //if (accessToken) {
+    //    await getConversation(prompt, accessToken);
+    //    return;
+    // }
+    app.summaryText = prompt;
 
     // Update app states to indicate unauthorized access
-    app.states.unauthorized = true;
+    //app.states.unauthorized = true;
     return;
 }
 

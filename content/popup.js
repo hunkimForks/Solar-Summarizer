@@ -10,9 +10,9 @@ const createMainPopup = () => {
     // Sets the innerHTML of the popupDom element
     popupDom.innerHTML = `<div class="gpts-head">
                                 <div class="gpts-ext-logo">
-                                    <img src="${icon}" width="25" alt="GPT Summarizer">
+                                    <img src="${icon}" width="25" alt="Solar Summarizer">
 
-                                    <b class="gpts-ext-name">GPT Summarizer</b>
+                                    <b class="gpts-ext-name">Solar Summarizer</b>
                                 </div>
 
                                 <div class="gpts-close">
@@ -28,6 +28,7 @@ const createMainPopup = () => {
                             <div class="gpts-content"></div>
 
                             <div class="gpts-footer">
+                            <!--
                                 <a href="https://chrome.google.com/webstore/detail/gpt-summarizer/lnooklbibhjciljoigpckbeojhgoefig" target="_blank" class="gpts-rate">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                                         <path
@@ -36,11 +37,12 @@ const createMainPopup = () => {
                                             style="fill: #ffc107;" />
                                     </svg>
 
-                                    <p>Rate this extension</p>
+                                   <p>Rate this extension</p> 
                                 </a>
+                                -->
 
                                 <div class="gpts-socials">
-                                    <a href="https://github.com/beshavardmh/GPT-Summarizer" target="_blank" title="Github Repository">
+                                    <a href="https://github.com/hunkimForks/Solar-Summarizer" target="_blank" title="Github Repository">
                                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M10.5 30C11.2956 30 12.0587 29.6839 12.6213 29.1213C13.1839 28.5587 13.5 27.7956 13.5 27V21"
@@ -60,7 +62,7 @@ const createMainPopup = () => {
                                         </svg>
                                     </a>
                                     
-                                    <a href="https://linkedin.com/in/beshavardmh" target="_blank" title="My Linkedin">
+                                    <a href="https://www.linkedin.com/in/hunkimup/" target="_blank" title="My Linkedin">
                                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
                                                 d="M26.5 4.5H5.5C4.94772 4.5 4.5 4.94772 4.5 5.5V26.5C4.5 27.0523 4.94772 27.5 5.5 27.5H26.5C27.0523 27.5 27.5 27.0523 27.5 26.5V5.5C27.5 4.94772 27.0523 4.5 26.5 4.5Z"

@@ -1,9 +1,9 @@
 {
-    "name": "GPT Summarizer",
-    "version": "1.1.0",
-    "description": "A Chrome extension that utilizes ChatGPT to provide a summarized version of web articles.",
+    "name": "Solar Summarizer",
+    "version": "2024.07.11",
+    "description": "A Chrome extension that utilizes SolarLLM to provide a summarized version of web articles.",
     "manifest_version": 3,
-    "author": "M.Ho3ein Beshavard",
+    "author": "M.Ho3ein Beshavard, Sung Kim",
     "icons": {
         "16": "assets/icons/icon-16.png",
         "32": "assets/icons/icon-32.png",
@@ -27,7 +27,7 @@
     ],
     "action": {},
     "host_permissions": [
-        "https://*.openai.com/*"
+        "https://*.upstage.ai/*"
     ],
     "permissions": [
         "storage",

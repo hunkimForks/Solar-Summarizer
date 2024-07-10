@@ -6,11 +6,10 @@ const showAuthorizeState = (callback) => {
     // Create authorize state DOM and put it inside the popup content
     const dom = `<div class="gpts-authorize">
                     <p>
-                        Please login and pass Cloudflare check at
+                        Please input Solar API key to summarize.
+                        <input type="password" class="gpts-api-key" placeholder="API Key" />
                         <br>
-                        <b class="gpts-auth-link">
-                            chat.openai.com
-                        </b>
+                        Get your API key from <a href="https://console.upstage.ai/" target="_blank">Upstage Concole</a>.
                     </p>
                 </div>`;
     document.querySelector('.gpts .gpts-content').innerHTML = dom;

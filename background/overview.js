@@ -34,5 +34,5 @@ export const generateOverview = async (contentObj) => {
     app.states.overview = true;
 
     // Return an object containing the overview reading time and word count
-    return { overviewTime: contentReadingTime, overviewWords: contentWords };
+    return { overviewTime: contentReadingTime, overviewWords: contentWords, contentText: app.pageContentText };
 }
