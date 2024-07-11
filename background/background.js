@@ -128,8 +128,8 @@ chrome.runtime.onConnect.addListener((port) => {
                     break;
                 case 'CONVERSATION_DONE':
                     // Save the page content and summary text to the cache and send the SUMMARY_DONE message to the content script
-                    setCache(`pageContentText${app.contentTabHashUrl}`, app.pageContentText, 10);
-                    setCache(`summaryText${app.contentTabHashUrl}`, app.summaryText, 10);
+                    // setCache(`pageContentText${app.contentTabHashUrl}`, app.pageContentText, 10);
+                    // setCache(`summaryText${app.contentTabHashUrl}`, app.summaryText, 10);
                     app.contentPort.postMessage({ type: 'SUMMARY_DONE' });
                     break;
             }
