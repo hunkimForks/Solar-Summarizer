@@ -6,8 +6,8 @@ export const generateOverview = async (contentObj) => {
     if (!contentObj || !contentObj.textContent || !contentObj.title || !contentObj.lang) {
         // Set error state and message in the app module if content object is invalid
         app.states.error = true;
-        app.error = 'Unfortunately, the content of this page cannot be identified!';
-        return;
+        app.error = 'Unfortunately, I cannot read the content of this web page. Please try another page.';
+        return { overviewTime: 0, overviewWords: 0, contentText: ''}
     }
 
 

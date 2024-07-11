@@ -29,7 +29,6 @@ const extIconOnClick = async (tab) => {
             'content/marked.js',
             'content/helpers.js',
             'content/popup.js',
-            'content/states/authorize.js',
             'content/states/error.js',
             'content/states/loading.js',
             'content/states/overview.js',

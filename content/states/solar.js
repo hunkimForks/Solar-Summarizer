@@ -34,7 +34,7 @@ const getSolarSummary = async (content, element) => {
                     },
                     {
                         "role": "user",
-                        "content": content
+                        "content": "Content: " + content
                     }
                 ],
                 stream: true,
@@ -55,15 +55,13 @@ const getSolarSummary = async (content, element) => {
         };
 
         eventSource.onerror = function (event) {
-            element.innerHTML = "Error: " + event + '\nPlease check out the API key in the settings.';
+            element.innerHTML = "Error: " + event + '\nPlease check the API key in the settings.';
             console.error('Error:', event);
             eventSource.close();
             reject(event);
         };
 
         eventSource.stream();
-
-        //element.innerHTML = "Solar Summary";
         resolve(content);
     });
 };
