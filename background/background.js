@@ -5,7 +5,6 @@ import { generateOverview } from "./overview.js";
 const extIconOnClick = async (tab) => {
     // Set the content tab ID and URL hash for later use
     app.contentTabId = tab.id;
-    app.url = tab.url;
 
     // Listen for updates to the content tab
     chrome.tabs.onUpdated.addListener(async (contentTabId, changeInfo, tab) => {

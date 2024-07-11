@@ -17,8 +17,6 @@ export const app = {
     chatGPTPort: null,
     contentPort: null,
     initialized: {},
-    youtubeTranscript: "",
-    url: '',
 };
 
 export const resetStates = () => {
