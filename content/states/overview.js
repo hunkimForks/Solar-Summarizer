@@ -12,7 +12,7 @@ const showOverviewState = async (time, words, content, callback) => {
     // Create overview state DOM and put it inside the popup content
     const dom = `<div class="gpts-overview">
                     <div id="gpts-setting-icon" class="gpts-setting-btn">
-                    ⚙️ Setting
+                    ⚙️ Settings
                     </div>
                     <div id="gpts-setting" class="gpts-authorize">
                         <p>

@@ -55,7 +55,7 @@ const getSolarSummary = async (content, element) => {
         };
 
         eventSource.onerror = function (event) {
-            element.innerHTML = "Error: " + event;
+            element.innerHTML = "Error: " + event + '\nPlease check out the API key in the settings.';
             console.error('Error:', event);
             eventSource.close();
             reject(event);
