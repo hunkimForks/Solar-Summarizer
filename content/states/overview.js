@@ -36,7 +36,7 @@ const showOverviewState = async (time, words, content, callback) => {
                     </div>
 
                     <p>
-                        The content of this page is: <b>${time} min read (about ${words} words)</b>.
+                        The content is <b>${time} min read (about ${words} words)</b>.
                     </p>
                    
                         <!--

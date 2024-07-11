@@ -9,9 +9,9 @@ const set_prompt_to_localstorage = (prompt) => {
 }
 
 const get_key_from_localstorage = () => {
-    return chrome.storage.local.get('solar_api_key')
+    return chrome.storage.local.get(['solar_api_key'])
 }
 
 const get_prompt_from_localstorage = () => {
-    return chrome.storage.local.get('solar_prompt')
+    return chrome.storage.local.get(['solar_prompt'])
 }
