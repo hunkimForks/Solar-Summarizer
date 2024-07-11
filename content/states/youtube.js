@@ -10,7 +10,6 @@ const getYoutubeTranscript = async () => {
             const langOptions = await getLangOptionsWithLink(videoId['v']);
             if (langOptions) {
                 const transcript = await getTranscript(langOptions[0]);
-                console.log(transcript);
                 return transcript;
             }
         }
