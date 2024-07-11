@@ -66,6 +66,7 @@ const showOverviewState = async (time, words, content, callback) => {
                     -->
                     <div class="gpts-summary-text" id="solar-summary">
                     </div>
+                    <div id="refresh-btn" class="gpts-refresh-btn">🔄 regenerate</div>
                 </div>`;
 
    
@@ -107,6 +108,11 @@ const showOverviewState = async (time, words, content, callback) => {
         } else {
             document.getElementById('gpts-setting').style.display = 'none';
         }
+    });
+
+    // Add an event listener for click on summarize button that calls a callback function
+    dynamicDomEvent('click', '#refresh-btn', () => {
+        callback(solarSummaryElement);
     });
 }
 

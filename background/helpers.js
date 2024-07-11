@@ -19,7 +19,6 @@ export const cyrb53 = (str, seed = 0) => {
 // A function that retrieves the data from the local storage
 export const getCache = async (key) => {
     let value = null;
-    return null;
     await chrome.storage.local.get([key]).then((result) => {
         if (typeof result[key] !== 'undefined') {
             // Check if data is expired, it will be removed from the storage

@@ -10,10 +10,14 @@ const extIconOnClick = async (tab) => {
     app.contentTabId = tab.id;
     app.contentTabHashUrl = cyrb53(tab.url);
 
+    
+
     // Listen for updates to the content tab
     chrome.tabs.onUpdated.addListener(async (contentTabId, changeInfo, tab) => {
         // If the content tab has been initialized before, remove it from the initialized list
         if (app.initialized[contentTabId]) delete app.initialized[contentTabId];
+
+        return;
 
         // If the content tab has finished loading the ChatGPT website, set the ChatGPT tab ID
         if (tab.url == 'https://chat.openai.com/' && changeInfo.status == 'complete') {
@@ -31,13 +35,15 @@ const extIconOnClick = async (tab) => {
     });
 
     // If the content tab has been initialized before, display the popup
-    if (app.initialized[app.contentTabId]) {
-        chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
-        return;
-    }
+    //if (app.initialized[app.contentTabId]) {
+    //    chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
+    //    return;
+    //}
 
     // Mark the content tab as initialized
-    app.initialized[app.contentTabId] = true;
+    //app.initialized[app.contentTabId] = false;
+    chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
+
 
     // Inject content modules into the content tab
     chrome.scripting.executeScript({
