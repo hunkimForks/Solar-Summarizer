@@ -1,4 +1,3 @@
-const default_prompt = `Briefly summarize the content in TLDR format (less than 3 lines) in English.`
 
 const set_key_to_localstorage = (key) => {
     chrome.storage.local.set({ solar_api_key: key });

@@ -25,7 +25,7 @@ port.onMessage.addListener(async (state) => {
             break;
 
         case 'IN_SUMMARY':
-            showOverviewState(state.props.time, state.props.words, state.props.content, (element) => {
+            showSummary(state.props.time, state.props.words, state.props.content, (element) => {
                 getSolarSummary(state.props.content, element);
 
             });

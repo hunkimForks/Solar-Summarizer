@@ -1,3 +1,5 @@
+const default_prompt = `Briefly summarize the content in TLDR format (less than 3 lines) in English.`
+
 const getSolarSummary = async (content, element) => {
     const default_element_value = "⏳ Generating summary...";
     element.innerHTML = default_element_value;
