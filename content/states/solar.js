@@ -1,16 +1,15 @@
 const getSolarSummary = async (content, element) => {
-    // Clear the element
-    element.innerHTML = "";
+    const default_element_value = "⏳ Generating summary...";
+    element.innerHTML = default_element_value;
 
     const api_key_dict = await get_key_from_localstorage();
     const prompt_promise = await get_prompt_from_localstorage();
-    const prompt = prompt_promise.solar_prompt?prompt_promise.solar_prompt:default_prompt;
-
+    const prompt = prompt_promise.solar_prompt ? prompt_promise.solar_prompt : default_prompt;
 
     return new Promise((resolve, reject) => {
 
         if (!api_key_dict || !api_key_dict.solar_api_key) {
-            element.innerHTML = "Error: API key not found!";
+            element.innerHTML = "Error: API key not found! Please check the settings.";
             reject("API key not found!");
             return;
         }
@@ -49,8 +48,13 @@ const getSolarSummary = async (content, element) => {
             }
             const result = JSON.parse(event.data);
             const delta_text = result['choices'][0]['delta']['content'];
+
             if (delta_text) {
-                element.innerHTML += delta_text;
+                if (element.innerHTML === default_element_value) {
+                    element.innerHTML = delta_text;
+                } else {
+                    element.innerHTML += delta_text;
+                }
             }
         };
 
