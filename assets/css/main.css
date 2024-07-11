@@ -111,10 +111,10 @@
 }
 
 .gpts-refresh-btn {
-    background-color: #4bea5b;
+    background-color: #ffffff;
     padding: 2px;
     min-width: 160px;
-    color: white;
+    color: rgb(9, 9, 9);
     font-weight: bold;
     border-radius: 8px;
     font-size: 14px;

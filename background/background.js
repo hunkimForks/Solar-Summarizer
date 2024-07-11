@@ -10,40 +10,24 @@ const extIconOnClick = async (tab) => {
     app.contentTabId = tab.id;
     app.contentTabHashUrl = cyrb53(tab.url);
 
-    
+    console.log("app.contentTabId: ", app.contentTabId)
+
 
     // Listen for updates to the content tab
     chrome.tabs.onUpdated.addListener(async (contentTabId, changeInfo, tab) => {
         // If the content tab has been initialized before, remove it from the initialized list
         if (app.initialized[contentTabId]) delete app.initialized[contentTabId];
-
-        return;
-
-        // If the content tab has finished loading the ChatGPT website, set the ChatGPT tab ID
-        if (tab.url == 'https://chat.openai.com/' && changeInfo.status == 'complete') {
-            setChatGPTTabId(contentTabId);
-
-            // Get an access token and authorize the user if necessary
-            let accessToken = await getAccessToken();
-
-            // One time showing authorization dialog on ChatGPT tab
-            if (app.extWantAuthorize && accessToken) {
-                userAuthorized();
-                app.extWantAuthorize = false;
-            }
-        }
     });
 
     // If the content tab has been initialized before, display the popup
-    //if (app.initialized[app.contentTabId]) {
-    //    chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
-    //    return;
-    //}
+    if (app.initialized[app.contentTabId]) {
+        chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
+        return;
+    }
 
     // Mark the content tab as initialized
-    //app.initialized[app.contentTabId] = false;
-    chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
-
+    app.initialized[app.contentTabId] = true;
+    // chrome.tabs.sendMessage(app.contentTabId, 'DISPLAY_POPUP');
 
     // Inject content modules into the content tab
     chrome.scripting.executeScript({
@@ -64,6 +48,7 @@ const extIconOnClick = async (tab) => {
             'content/content.js',
         ]
     });
+
 }
 
 // Listen for clicks on the extension icon

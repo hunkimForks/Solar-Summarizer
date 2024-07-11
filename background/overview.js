@@ -12,7 +12,7 @@ export const generateOverview = async (contentObj) => {
     }
 
     // Create a new instance of the GPT3BrowserTokenizer class
-    const tokenizer = new GPT3BrowserTokenizer({ type: 'gpt3' });
+    // const tokenizer = new GPT3BrowserTokenizer({ type: 'gpt3' });
 
     // Combine the content title and text, remove any leading/trailing white spaces and replace any tab/spaces with newline character
     let content = `${contentObj.title}\n${contentObj.textContent}`;
@@ -20,12 +20,13 @@ export const generateOverview = async (contentObj) => {
 
     // Count the number of words in the content, calculate the reading time based on average reading speed and return an object with both values
     const contentWords = content.split(' ').length;
-    const contentReadingTime = Math.floor((contentWords / 220) * 2) / 2;
+    const contentReadingTime = Math.floor((contentWords / 220) * 2) / 2 + 1;
+    app.pageContentText = content.length > 20000 ? content.slice(0, 20000) + '...' : content;
 
     // Encode the content using the tokenizer, trim the encoded result if it exceeds 2000 bytes, and decode the result back to text
-    const encodedContent = tokenizer.encode(content);
-    const trimmedBpe = encodedContent.bpe.length > 2000 ? encodedContent.bpe.slice(0, 2000) : encodedContent.bpe;
-    app.pageContentText = tokenizer.decode(trimmedBpe) + '...';
+    //const encodedContent = tokenizer.encode(content);
+    //const trimmedBpe = encodedContent.bpe.length > 20000 ? encodedContent.bpe.slice(0, 20000) : encodedContent.bpe;
+    //app.pageContentText = tokenizer.decode(trimmedBpe) + '...';
 
     // Set the content language in the app module
     app.pageContentLang = contentObj.lang;
