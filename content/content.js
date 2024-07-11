@@ -10,7 +10,7 @@ const run = async () => {
 run();
 
 // Establishe a connection and send the first message to the background
-const port = chrome.runtime.connect({name: "POPUP"});
+const port = chrome.runtime.connect({ name: "POPUP" });
 port.postMessage({ type: 'GET_CONTENT' });
 
 // Listen for messages on the background.
@@ -19,13 +19,15 @@ port.onMessage.addListener(async (state) => {
     switch (state.type) {
         case 'IN_GET_CONTENT': // 'AUTHORIZED':
             showLoadingState();
-            port.postMessage({ type: 'GENERATE_SUMMARY', props: { content: getPageContent() } });
+            const pageContent = getPageContent();
+            const youtubeTranscript = await getYoutubeTranscript();
+            port.postMessage({ type: 'GENERATE_SUMMARY', props: { content: pageContent, youtubeTranscript: youtubeTranscript } });
             break;
-        
+
         case 'IN_SUMMARY':
-            showOverviewState( state.props.time, state.props.words, state.props.content, (element) => {                
+            showOverviewState(state.props.time, state.props.words, state.props.content, (element) => {
                 getSolarSummary(state.props.content, element);
-                
+
             });
             break;
         // If the message type is "ERROR", this code shows an error state with the provided error message
@@ -41,8 +43,8 @@ chrome.runtime.onMessage.addListener(async (action) => {
     // Display the main popup when the user closes it once and clicks on the extension icon again
     if (action == 'DISPLAY_POPUP') {
         displayMainPopup();
-       if (port) {
+        if (port) {
             port.postMessage({ type: 'GET_CONTENT' });
-       }
+        }
     }
 });

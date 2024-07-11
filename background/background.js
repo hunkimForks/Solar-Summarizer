@@ -5,7 +5,7 @@ import { generateOverview } from "./overview.js";
 const extIconOnClick = async (tab) => {
     // Set the content tab ID and URL hash for later use
     app.contentTabId = tab.id;
-    //app.contentTabHashUrl = cyrb53(tab.url);
+    app.url = tab.url;
 
     // Listen for updates to the content tab
     chrome.tabs.onUpdated.addListener(async (contentTabId, changeInfo, tab) => {
@@ -36,6 +36,7 @@ const extIconOnClick = async (tab) => {
             'content/states/solar.js',
             'content/states/sse.js',
             'content/states/store.js',
+            'content/states/youtube.js',
             'content/content.js',
         ]
     });
@@ -59,10 +60,10 @@ chrome.runtime.onConnect.addListener((port) => {
             case 'GET_CONTENT':
                 app.contentPort.postMessage({ type: 'IN_GET_CONTENT' });
                 break;
-            
+
             case 'GENERATE_SUMMARY':
                 // Generate an overview of the content
-                const { overviewTime, overviewWords, contentText } = await generateOverview(event.props.content);
+                const { overviewTime, overviewWords, contentText } = await generateOverview(event.props.content, event.props.youtubeTranscript);
                 if (app.states.error) app.contentPort.postMessage({ type: 'ERROR', props: { error: app.error } });
                 if (app.states.overview) app.contentPort.postMessage({ type: 'IN_SUMMARY', props: { time: overviewTime, words: overviewWords, content: contentText } });
                 break;

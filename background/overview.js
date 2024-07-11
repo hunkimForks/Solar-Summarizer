@@ -1,7 +1,7 @@
 import { app } from './app.js';
 
 // Define a function that generates an overview of the page content
-export const generateOverview = async (contentObj) => {
+export const generateOverview = async (contentObj, youtubeTranscript) => {
     // Check if the content object has required properties
     if (!contentObj || !contentObj.textContent || !contentObj.title || !contentObj.lang) {
         // Set error state and message in the app module if content object is invalid
@@ -14,6 +14,10 @@ export const generateOverview = async (contentObj) => {
     // Combine the content title and text, remove any leading/trailing white spaces and replace any tab/spaces with newline character
     let content = `${contentObj.title}\n${contentObj.textContent}`;
     content = content.trim().replace(/[\t\n]+/g, '\n');
+
+    if (youtubeTranscript) {
+        content = `${content}\n${youtubeTranscript}`;
+    }
 
     // Count the number of words in the content, calculate the reading time based on average reading speed and return an object with both values
     const contentWords = content.split(' ').length;
