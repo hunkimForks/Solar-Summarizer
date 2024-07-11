@@ -1,5 +1,4 @@
 import { app } from './app.js';
-import { GPT3BrowserTokenizer } from "./gpt3-tokenizer.js";
 
 // Define a function that generates an overview of the page content
 export const generateOverview = async (contentObj) => {
@@ -11,8 +10,6 @@ export const generateOverview = async (contentObj) => {
         return;
     }
 
-    // Create a new instance of the GPT3BrowserTokenizer class
-    // const tokenizer = new GPT3BrowserTokenizer({ type: 'gpt3' });
 
     // Combine the content title and text, remove any leading/trailing white spaces and replace any tab/spaces with newline character
     let content = `${contentObj.title}\n${contentObj.textContent}`;
